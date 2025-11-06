@@ -16,10 +16,9 @@ def verify_webhook_signature(request_body, received_signature, secret=WEBHOOK_SE
 
     secret_bytes = secret.encode('utf-8')
 
-    # Computing the expected hash using the secret key and SHA256
     expected_signature = hmac.new(
         key=secret_bytes,
-        msg=request_body, # using the raw bytes directly
+        msg=request_body,
         digestmod=hashlib.sha256
     ).hexdigest()
 
